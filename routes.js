@@ -7,8 +7,11 @@ module.exports = (app) => {
     .get(json.notFound);
   
   app.route('/')
-    .get(json.index)
+    .get(json.index);
   
-  app.route('/all')
-    .get(json.all)
+  app.route('/view')
+    .get(json.view);
+    
+  app.route('/view/:id')
+    .get(json.orderByID);
 }

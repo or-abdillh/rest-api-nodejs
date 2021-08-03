@@ -11,13 +11,22 @@ module.exports.notFound = (req, res) => {
   response.notFound("Data yang anda cari tidak ditemukan", res);
 }
 
-module.exports.all = (req, res) => {
-  const sql = "SELECT fullname, username, job FROM tabel_pemilih";
+module.exports.view = (req, res) => {
+  const sql = "SELECT id, fullname, username, job FROM tabel_pemilih";
   
   connection.query(sql, (err, rows, fields) => {
     if (err) throw err;
-    else {
-      response.success(rows, res);
-    }
+    else response.success(rows, res);
   });
+}
+
+//Order by ID
+module.exports.orderByID = (req, res) => {
+  const ID = req.params.id;
+  const sql = `SELECT fullname, username, job FROM tabel_pemilih WHERE id = ${ID}`;
+  
+  connection.query(sql, (err, rows, fields) => {
+    if (err) throw err;
+    else response.success(rows, res);
+  })
 }
