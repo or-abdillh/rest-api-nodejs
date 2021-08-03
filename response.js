@@ -4,7 +4,7 @@ module.exports.success = (values, res) => {
   const data = {
     'code': 200,
     'message': 'Success',
-    'values': values
+    'valuesco': values
   };
   
   res.json(data);
@@ -15,7 +15,7 @@ module.exports.notFound = (values, res) => {
   const data = {
     'code': 404,
     'message': 'not found',
-    'values': values
+    'description': values
   }
   
   res.json(data);

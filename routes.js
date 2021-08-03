@@ -3,9 +3,7 @@
 module.exports = (app) => {
   var json = require('./controller.js');
   
-  app.route('/404')
-    .get(json.notFound);
-  
+  //Request GET
   app.route('/')
     .get(json.index);
   
@@ -17,4 +15,8 @@ module.exports = (app) => {
   
   app.route('/view/job/:job')
     .get(json.orderByJob);
+    
+  //Request POST
+  app.route('/add')
+    .post(json.addNewRecord);
 }

@@ -31,7 +31,7 @@ module.exports.orderByID = (req, res) => {
   });
 }
 
-//Order by Name
+//Order by Job
 module.exports.orderByJob = (req, res) => {
   const job = req.params.job;
   const sql = `SELECT id, fullname, username FROM tabel_pemilih WHERE job = '${job}'`;
@@ -39,5 +39,26 @@ module.exports.orderByJob = (req, res) => {
   connection.query(sql, (err, rows, fields) => {
     if (err) throw err;
     else response.success(rows, res);
+  });
+}
+
+//Add new record
+module.exports.addNewRecord = (req, res) => {
+  //Get data from body
+  const data = {
+    fullname: req.body.fullname,
+    username: req.body.username,
+    password: req.body.password,
+    job: req.body.job,
+    lastModified: new Date()
+  };
+  
+  const sql = `INSERT INTO tabel_pemilih
+    (fullname, username, password, job, last_modified)
+    VALUES (?, ?, ?, ?, ?)`;
+    
+  connection.query(sql, [data.fullname, data.username, data.password, data.job, data.lastModified] ,(err, rows, fields) => {
+    if (err) throw err;
+    else response.success('Record baru berhasil ditambahkan', res);
   });
 }
