@@ -8,4 +8,7 @@ module.exports = (app) => {
   
   app.route('/')
     .get(json.index)
+  
+  app.route('/all')
+    .get(json.all)
 }
