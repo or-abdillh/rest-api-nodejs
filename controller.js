@@ -77,6 +77,17 @@ module.exports.updateRecord = (req, res) => {
   connection.query(sql, [fullname, username, password, job, lastModified, id],
   (err, rows, fields) => {
     if (err) throw err;
-    else response.success("Record berhasil di UPDATE", res);
-  })
+    else response.success(`Record berhasil di UPDATE`, res);
+  });
+}
+
+//Delete by ID
+module.exports.deleteRecord = (req, res) => {
+  var id = req.body.id;
+  
+  const sql = `DELETE FROM tabel_pemilih WHERE id = ${id}`;
+  connection.query(sql, (err, rows, fields) => {
+    if (err) throw err;
+    else response.success(`Record dengan ID = ${id} berhasil dihapus`, res);
+  });
 }
