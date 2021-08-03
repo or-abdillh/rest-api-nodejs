@@ -12,6 +12,9 @@ module.exports = (app) => {
   app.route('/view')
     .get(json.view);
     
-  app.route('/view/:id')
+  app.route('/view/id/:id')
     .get(json.orderByID);
+  
+  app.route('/view/job/:job')
+    .get(json.orderByJob);
 }

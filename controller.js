@@ -23,10 +23,21 @@ module.exports.view = (req, res) => {
 //Order by ID
 module.exports.orderByID = (req, res) => {
   const ID = req.params.id;
-  const sql = `SELECT fullname, username, job FROM tabel_pemilih WHERE id = ${ID}`;
+  const sql = `SELECT id, fullname, username, job FROM tabel_pemilih WHERE id = ${ID}`;
   
   connection.query(sql, (err, rows, fields) => {
     if (err) throw err;
     else response.success(rows, res);
-  })
+  });
+}
+
+//Order by Name
+module.exports.orderByJob = (req, res) => {
+  const job = req.params.job;
+  const sql = `SELECT id, fullname, username FROM tabel_pemilih WHERE job = '${job}'`;
+  
+  connection.query(sql, (err, rows, fields) => {
+    if (err) throw err;
+    else response.success(rows, res);
+  });
 }
