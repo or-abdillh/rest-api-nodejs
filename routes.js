@@ -19,4 +19,8 @@ module.exports = (app) => {
   //Request POST
   app.route('/add')
     .post(json.addNewRecord);
+    
+  //Request UPDATE
+  app.route('/update')
+    .post(json.updateRecord);
 }

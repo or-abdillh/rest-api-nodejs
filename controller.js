@@ -62,3 +62,21 @@ module.exports.addNewRecord = (req, res) => {
     else response.success('Record baru berhasil ditambahkan', res);
   });
 }
+
+//Update data by ID
+//PUT
+module.exports.updateRecord = (req, res) => {
+  var id = req.body.id;
+  var fullname = req.body.fullname;
+  var username = req.body.username;
+  var password = req.body.password;
+  var job = req.body.job;
+  var lastModified = new Date();
+  
+  const sql = "UPDATE tabel_pemilih SET fullname = ?, username = ?, password = ?, job = ?, last_modified = ? WHERE id = ?";
+  connection.query(sql, [fullname, username, password, job, lastModified, id],
+  (err, rows, fields) => {
+    if (err) throw err;
+    else response.success("Record berhasil di UPDATE", res);
+  })
+}
